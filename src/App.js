@@ -1,18 +1,17 @@
 import './App.css';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import Carousel from './components/Carousel';
 import Electronics from './components/Electronics';
 import Fashion from './components/Fashion';
 import About from './components/About';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
     <>
       <Router>
           <Navbar />
-          <Carousel />
           <Routes>
             <Route exact path="/" element={ <Home /> } key="/" />
             <Route exact path="/home" element={ <Home /> } key="home" />
