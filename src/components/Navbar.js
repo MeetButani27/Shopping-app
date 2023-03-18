@@ -18,10 +18,10 @@ function Navbar() {
                         <Link className="nav-link" aria-current="page" to="/home">Home</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" aria-current="page" to="/home">Electronics</Link>
+                        <Link className="nav-link" aria-current="page" to="/electronics">Electronics</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" aria-current="page" to="/home">Fashion</Link>
+                        <Link className="nav-link" aria-current="page" to="/fashion">Fashion</Link>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link" to="/about">About</Link>
