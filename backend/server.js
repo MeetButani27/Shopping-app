@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
+require('dotenv').config();
 
 const port = 9000
-const mongoUrl = "mongodb+srv://meet:meet2002@cluster0.6oo0uxj.mongodb.net/?retryWrites=true&w=majority";
+const mongoUrl = process.env.MONGO_DB_URL;
 
 mongoose.connect( mongoUrl,{
     useNewUrlParser: true
