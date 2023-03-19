@@ -3,8 +3,8 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Electronics from './components/Electronics';
 import Fashion from './components/Fashion';
-import About from './components/About';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddItem from './components/AddItem';
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
             <Route exact path="/home" element={ <Home /> } key="home" />
             <Route exact path="/electronics" element={ <Electronics /> } key="electronics" />
             <Route exact path="/fashion" element={ <Fashion /> } key="fashion" />
-            <Route exact path="/about" element={ <About /> } key="about" />
+            <Route exact path="/additem" element={ <AddItem /> } key="about" />
           </Routes>
         </Router>
     </>
