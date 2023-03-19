@@ -1,18 +1,47 @@
-import React from 'react'
-import Carousel from './Carousel';
-import Item from './Item';
-import Galaxym51 from '../images/galaxym51.webp';
-import Router from '../images/router.webp';
+import React from "react";
+import Carousel from "./Carousel";
+import Item from "./Item";
+import Galaxym51 from "../images/galaxym51.webp";
+// import Router from "../images/router.webp";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 
 function Home() {
+  const url = "http://localhost:9000/allItems";
+  const [items, setItems] = useState([]);
+
+  const fetchData = () => {
+    return axios
+      .get(url)
+      .then((res) => {
+        setItems(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <Carousel />
-
-      <Item item_name="SAMSUNG Galaxy S23 Ultra 5G" item_image={Galaxym51} price="Rs. 1,24,999" />
-      <Item item_name="D-Link DIR-819 750 Mbps Wireless Router" item_image={Router} price="Rs. 1,479" />
+      <>
+        {items.map((item,idx) => { 
+          return(<Item
+            item_name = {item.item_name}
+            item_image = {item.item_url}
+            price = {item.price}
+            rating = {item.rating}
+            key = {idx}
+          />)
+        })}
+      </>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

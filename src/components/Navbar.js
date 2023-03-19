@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   return (
     <>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary" data-bs-theme="dark">
             <div className="container-fluid">
                 <Link className="navbar-brand ms-3 me-4" to="/" >Atoz Sellers</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
