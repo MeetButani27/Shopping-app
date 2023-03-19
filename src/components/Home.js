@@ -29,7 +29,7 @@ function Home() {
   return (
     <>
       <Carousel />
-      <>
+      <div className="mx-2 my-5 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4">
         {items.map((item,idx) => { 
           return(<Item
             item_name = {item.item_name}
@@ -39,7 +39,7 @@ function Home() {
             key = {idx}
           />)
         })}
-      </>
+      </div>
     </>
   );
 }
