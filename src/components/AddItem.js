@@ -1,15 +1,3 @@
-// import React from 'react'
-
-// function AddItem() {
-//   return (
-//     <div className="">
-//       <h1>Hello World</h1>
-//     </div>
-//   )
-// }
-
-// export default AddItem
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -50,7 +38,7 @@ export default function AddItem() {
             id="outlined-required"
             label="Item URL"
           />
-          
+
           <Button variant="contained" className="my-4 px-5" endIcon={<SendIcon />}> Add product </Button>
         </div>
       </Box>

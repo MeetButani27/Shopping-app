@@ -51,7 +51,7 @@ app.get('/allItems', async(req,res) => {
 })
 
 // router
-const additem = require('./router/item_router');
+const additem = require('./router/additem_router');
 app.use('/additem', additem);
 
 
