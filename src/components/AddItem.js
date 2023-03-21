@@ -1,10 +1,24 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
 
 export default function AddItem() {
+  const [new_item, setNew_item] = useState({
+    item_id: "",
+    item_name: "",
+    price: "",
+    rating: "",
+    category: "",
+    item_url: ""
+  });
+
+  const handleSubmit = () => {
+    console.log('Product added successfully!!');
+  };
+
   return (
     <div className="my-5">
       <Box component="form" noValidate autoComplete="off" style={{'display':"flex",'justifyContent':"center", 'alignItems':"center"}}
@@ -39,7 +53,7 @@ export default function AddItem() {
             label="Item URL"
           />
 
-          <Button variant="contained" className="my-4 px-5" endIcon={<SendIcon />}> Add product </Button>
+          <Button variant="contained" className="my-4 px-5" onClick={handleSubmit()} endIcon={<SendIcon />}> Add product </Button>
         </div>
       </Box>
     </div>
