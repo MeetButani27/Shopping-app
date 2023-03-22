@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 export default function AddItem() {
   const [items, setItems] = useState({
@@ -15,17 +16,21 @@ export default function AddItem() {
     item_url: ""
   });
 
-  let name, value;
 
   const handleChange = (e) => {
-    name = e.target.name;
-    value = e.target.value;
+    let name = e.target.name;
+    let value = e.target.value;
     setItems({...items, [name]:value});
   };
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(items);
+
+    axios.post('http://localhost:9000/additem', items)
+    .then((res) => alert('New item added successfully !!'))
+    .catch((err) => console.log(err))
   };
 
   return (
@@ -80,7 +85,7 @@ export default function AddItem() {
             onChange={(e) => handleChange(e) }
           />
 
-          <Button variant="contained" className="my-4 px-5" type="submit" onChange={(e) => handleSubmit(e)} endIcon={<SendIcon />}> Add product </Button>
+          <Button variant="contained" className="my-4 px-5" type="submit" onClick={(e) => handleSubmit(e)} endIcon={<SendIcon />}> Add product </Button>
         </form>
       </Box>
     </div>
