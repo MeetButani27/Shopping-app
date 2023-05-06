@@ -13,11 +13,11 @@ function Item(props) {
             <div className="">
                 <div className="col">
                     <div className="card m-1" style={{'border': '1.5px solid black', 'height':'wrap-content'}}>
-                        <img src={props.item_image} height="320px" width="150px" className="card-img-top" alt="Not Available !!" />
+                        <img src={props.item_image} height="320px" width="150px" style={{ 'padding': '20px' }} className="card-img-top" alt="Not Available !!" />
                         <div className="card-body cardview">
                             <Link to="" style={{'color': 'black'}}><h5 className="card-title">{ props.item_name }</h5></Link>
                             <h5 className="my-2">Rs. {props.price} /-</h5>
-                            <p style={{'verticalAlign': 'middle'}}><Rating name="half-rating" value={props.rating} precision={0.5} readOnly /><span>({props.rating})</span></p>
+                            <p style={{ 'display': 'flex' }}><Rating name="half-rating" value={props.rating} precision={0.5} readOnly />&ensp;({props.rating})</p>
                             <hr />
                             <Button className="px-4 ms-1 me-2" variant="success"><BoltIcon sx={{ fontSize: 18 }} className="me-2" />Buy now</Button>{' '}
                             <Button className="px-4" variant="primary"><ShoppingCartIcon sx={{ fontSize: 18 }} className="me-2" />Add to cart</Button>{' '}
