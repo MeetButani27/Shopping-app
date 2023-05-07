@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 function Login() {
   return (
     <>
-        <div className='px-5 pt-3'>
+        <div className='px-5 pt-3' style={{ 'background-image': 'linear-gradient(to right, #574280, #0064ae, #0083b1, #00997e, #18a724)' }}>
 
         <MDBRow>
             <MDBCol md='7' className='text-center text-md-start d-flex flex-column justify-content-center'>
@@ -20,7 +20,7 @@ function Login() {
                     The best offers just <br />
                     <span className="text-primary">for you !!</span>
                 </h1>
-                <p className='px-3' style={{color: 'hsl(217, 10%, 50.8%)'}}>
+                <p className='px-3' style={{color: 'wheat'}}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Eveniet, itaque accusantium odio, soluta, corrupti aliquam
                     quibusdam tempora at cupiditate quis eum maiores libero
@@ -30,7 +30,7 @@ function Login() {
 
             <MDBCol md='5'>
 
-                <MDBCard className='mx-3 mb-5' style={{ 'backgroundColor': '#f1e8fa', 'marginTop': '80px' }}>
+                <MDBCard className='mx-3' style={{ 'backgroundColor': '#f1e8fa', 'marginTop': '80px', 'marginBottom': '89px' }}>
                 <MDBCardBody className='px-5 mt-4 '>
 
                     <h3 className='pb-4'>Log In to continue</h3>

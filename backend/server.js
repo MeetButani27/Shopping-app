@@ -27,6 +27,13 @@ mongoose.connect(mongoUrl,{
     console.log(err);
 })
 
+app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`)
+})
+
+
+// ====================================================================
+
 
 require('./model/item_model');
 const Items = mongoose.model('items');
@@ -56,7 +63,5 @@ app.get('/allItems', async(req,res) => {
 const additem = require('./router/additem_router');
 app.use('/additem', additem);
 
-
-app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`)
-})
+const adduser = require('./router/adduser_router');
+app.use('/adduser', adduser);
