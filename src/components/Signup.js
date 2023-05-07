@@ -9,10 +9,23 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
+import { IconButton, InputAdornment } from '@mui/material';
 
 function Signup() {
     
+    const [eye1, setEye1] = useState(false);
+    const handleEye1 = () => {
+        setEye1(!eye1);
+    };
+
+    const [eye2, setEye2] = useState(false);
+    const handleEye2 = () => {
+        setEye2(!eye2);
+    };
+
     const [users, setUsers] = useState({
         f_name: "",
         l_name: "",
@@ -35,7 +48,8 @@ function Signup() {
         .then((res) => alert('Account created successfully !!'))
         .catch((err) => console.log(err))
     };
-    
+
+
     return (
     <>
         <div className='px-5 pt-3'>
@@ -66,50 +80,79 @@ function Signup() {
                                 name="f_name"
                                 value={users.f_name}
                                 onChange={(e) => handleChange(e) }
-                                style={{ 'width': '48%' }} />
+                                style={{ 'width': '48%' }} 
+                                required />
                                 
                             <TextField id="outlined-required" 
                                 label="Last name"
                                 name="l_name"
                                 value={users.l_name}
                                 onChange={(e) => handleChange(e) }
-                                style={{ 'width': '48%' }} />
+                                style={{ 'width': '48%' }}
+                                required />
                         </div>  
 
                         <div className='pt-3' style={{ 'display': 'flex', 'justifyContent': 'space-between'}}>
                             <TextField id="outlined-required" 
                                 label="Email address"
                                 name="email_id"
+                                type="email"
                                 value={users.email_id}
                                 onChange={(e) => handleChange(e) }
-                                style={{ 'width': '100%' }} />
+                                style={{ 'width': '100%' }}
+                                required />
                         </div>
 
                         <div className='pt-3' style={{ 'display': 'flex', 'justifyContent': 'space-between'}}>
                             <TextField id="outlined-required" 
                                 label="Mobile no."
                                 name="mobile_no"
+                                type="text"
                                 value={users.mobile_no}
                                 onChange={(e) => handleChange(e) }
-                                style={{ 'width': '100%' }} />
+                                style={{ 'width': '100%' }}
+                                inputProps={{
+                                    maxLength: 10,
+                                    inputMode: 'text',
+                                    pattern: '[0-9]*',
+                                }}
+                                required />
                         </div>  
 
                         <div className='pt-3' style={{ 'display': 'flex', 'justifyContent': 'space-between'}}>
                             <TextField id="outlined-required" 
                                 label="Password"
                                 name="password"
+                                type= { eye1 ?  "text":"password"}
                                 value={users.password}
                                 onChange={(e) => handleChange(e) }
-                                style={{ 'width': '100%' }} />
+                                style={{ 'width': '100%' }}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position='end'>
+                                        <IconButton onClick={ handleEye1 }>
+                                            { eye1 ? <VisibilityIcon /> : <VisibilityOffIcon /> }
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                required />
                         </div>
 
                         <div className='pt-3' style={{ 'display': 'flex', 'justifyContent': 'space-between'}}>
                             <TextField id="outlined-required" 
                                 label="Confirm Password"
                                 name="re_password"
+                                type= { eye2 ?  "text":"password"}
                                 value={users.re_password}
                                 onChange={(e) => handleChange(e) }
-                                style={{ 'width': '100%' }} />
+                                style={{ 'width': '100%' }}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position='end'>
+                                        <IconButton onClick={ handleEye2 }>
+                                            { eye2 ? <VisibilityIcon /> : <VisibilityOffIcon /> }
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                required />
                         </div>
 
                         <Button variant="contained" className="my-3 px-5 py-2" type="submit" onClick={(e) => handleSubmit(e)} style={{ 'width': '100%' }} endIcon={<SendIcon />}> Sign Up </Button>

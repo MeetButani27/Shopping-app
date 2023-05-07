@@ -49,17 +49,43 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+
+// ==================================================================================
+
+
 app.get('/allItems', async(req,res) => {
     try {
         const allItem = await Items.find({});
-        res.send({ status:"ok", data:allItem });
+        res.send({ status: "ok", data: allItem });
     }
     catch(err) {
         console.log(err);
     }
 })
 
-// router
+app.get('/mobiles', async(req,res) => {
+    try {
+        const mobile_item = await Items.find({'category': 'Mobile'});
+        res.send({ status: "ok", data: mobile_item });
+    }
+    catch(err) {
+        console.log(err);
+    }
+})
+
+app.get('/electronics', async(req,res) => {
+    try {
+        const electronic_item = await Items.find({'category': 'Electronics'});
+        res.send({ status: "ok", data: electronic_item });
+    }
+    catch(err) {
+        console.log(err);
+    }
+})
+
+// ==================================================================================
+// routers
+
 const additem = require('./router/additem_router');
 app.use('/additem', additem);
 

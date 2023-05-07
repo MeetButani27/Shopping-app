@@ -3,10 +3,6 @@ import { MDBCol, MDBRow, MDBCard, MDBCardBody} from 'mdb-react-ui-kit';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import GoogleIcon from '@mui/icons-material/Google';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link } from 'react-router-dom';
 
 function Login() {
