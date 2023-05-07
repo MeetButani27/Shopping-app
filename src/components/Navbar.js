@@ -1,9 +1,20 @@
 import React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
+
+  const navigate = useNavigate();
+
+  const navigateToLogin = () => {
+    navigate('/login');
+  };
+
+  const navigateToSignup = () => {
+    navigate('/signup');
+  };
+
   return (
     <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
@@ -34,8 +45,8 @@ function Navbar() {
                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                     <FavoriteBorderIcon className="mx-2" style={{color: 'silver', margin: 'auto'}}/>
                     <ShoppingCartIcon className="mx-2 me-3" style={{color: 'silver', margin: 'auto'}}/>
-                    <button className="btn btn-success mx-2" type="submit">Login</button>
-                    <button className="btn btn-primary mx-2" type="submit">SignUp</button>
+                    <button className="btn btn-success mx-2" type="submit" onClick={ navigateToLogin }>Login</button>
+                    <button className="btn btn-primary mx-2" type="submit" onClick={ navigateToSignup }>SignUp</button>
                   </form>
                 </div>
             </div>
