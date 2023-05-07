@@ -40,6 +40,8 @@ function Home() {
             <Button variant="outlined" size="medium" color="error">Fashion</Button>
             <Button variant="outlined" size="medium" color="success">Grocery</Button>            
             <Button variant="outlined" size="medium" color="error">Furniture</Button>
+            <Button variant="outlined" size="medium" color="success">Tools</Button>
+            <Button variant="outlined" size="medium" color="error">Appliances</Button>
             </div>
         </div>
       </div>

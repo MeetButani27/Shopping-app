@@ -30,8 +30,8 @@ function Signup() {
 
             <MDBCol md='5'>
 
-                <MDBCard className='mt-3 mx-2' style={{ 'backgroundColor': '#faebf0' }}>
-                <MDBCardBody className='px-5 mt-4'>
+                <MDBCard className='mt-3 mx-2 mb-4' style={{ 'backgroundColor': '#faebf0' }}>
+                <MDBCardBody className='px-5 mt-3'>
 
                     <h3 className='pb-2'>Sign Up to get started</h3>
 
@@ -57,7 +57,7 @@ function Signup() {
                         <GoogleIcon size="large" className='mx-4' style={{ 'color': 'red', 'fontSize': '30px' }} />
                         <TwitterIcon size="large" className='mx-4' style={{ 'color': '#03c2fc', 'fontSize': '30px' }} />
                         <GitHubIcon size="large" className='mx-4' style={{ 'color': 'black', 'fontSize': '30px' }} />
-                        <FacebookIcon size="large" className='mx-4' style={{ 'color': 'blue', 'fontSize': '30px' }} />
+                        <FacebookIcon size="large" className='mx-4' style={{ 'color': 'blue', 'fontSize': '34px' }} />
                     </div>
 
                     <div style={{ 'margin': '0px', 'padding': '0px' }} className='text-center pt-2'>

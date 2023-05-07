@@ -30,7 +30,7 @@ function Login() {
 
             <MDBCol md='5'>
 
-                <MDBCard className='mx-4' style={{ 'backgroundColor': '#f1e8fa', 'marginTop': '80px' }}>
+                <MDBCard className='mx-3 mb-5' style={{ 'backgroundColor': '#f1e8fa', 'marginTop': '80px' }}>
                 <MDBCardBody className='px-5 mt-4 '>
 
                     <h3 className='pb-4'>Log In to continue</h3>
