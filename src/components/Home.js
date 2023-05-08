@@ -8,12 +8,12 @@ import axios from 'axios';
 
 
 function Home() {
-  const url = "http://localhost:9000/allItems";
+  const item_url = "http://localhost:9000/allItems";
+  const user_url = "http://localhost:9000/userlogin";
   const [items, setItems] = useState([]);
-
-  const fetchData = () => {
-    return axios
-      .get(url)
+  
+  const fetchItemData = () => {
+    return axios.get(item_url)
       .then((res) => {
         setItems(res.data.data);
       })
@@ -22,8 +22,25 @@ function Home() {
       });
   };
 
+  const fetchUserData = () => {
+    return axios.post(user_url, window.localStorage.getItem("token"))
+      .then((data) => {
+        console.log(data);
+    
+        if(data.status == "ok") {
+          alert("Login successfull !!");
+          window.localStorage.setItem("token", data.data);
+          window.location.href = "./mobiles";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    fetchData();
+    fetchItemData();
+    fetchUserData();
   }, []);
 
   return (
@@ -35,19 +52,20 @@ function Home() {
         <div className="container-fluid px-4 pt-3 pb-4">
           <h5 className="pb-4">Choose from a wide range of categories:</h5>
             <div style={{ 'display':'flex' , 'justifyContent': 'space-evenly'}}>
-            <Button variant="outlined" size="medium" color="error">Mobiles</Button>
-            <Button variant="outlined" size="medium" color="success">Electronics</Button>
-            <Button variant="outlined" size="medium" color="error">Fashion</Button>
-            <Button variant="outlined" size="medium" color="success">Grocery</Button>            
-            <Button variant="outlined" size="medium" color="error">Furniture</Button>
-            <Button variant="outlined" size="medium" color="success">Tools</Button>
-            <Button variant="outlined" size="medium" color="error">Appliances</Button>
-            <Button variant="outlined" size="medium" color="success">Sports</Button>
+              <Button variant="outlined" size="medium" color="success">All categories</Button>
+              <Button variant="outlined" size="medium" color="error">Mobiles</Button>
+              <Button variant="outlined" size="medium" color="success">Electronics</Button>
+              <Button variant="outlined" size="medium" color="error">Fashion</Button>
+              <Button variant="outlined" size="medium" color="success">Grocery</Button>            
+              <Button variant="outlined" size="medium" color="error">Furniture</Button>
+              <Button variant="outlined" size="medium" color="success">Tools</Button>
+              <Button variant="outlined" size="medium" color="error">Appliances</Button>
+              <Button variant="outlined" size="medium" color="success">Sports</Button>
             </div>
         </div>
       </div>
 
-      <div className="px-4 py-3 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4" style={{ 'backgroundColor': '#f5ecd3' }}>
+      <div className="px-4 py-3 pb-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4" style={{ 'backgroundColor': '#f5ecd3' }}>
         {items.map((item,idx) => { 
           return(<Item
             item_name = {item.item_name}

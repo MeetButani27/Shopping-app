@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = "pm15aafre87231ftgedsf2a1d1fr21tg1r2gh1e2sa13qf57u57821g2e1g32t58rf9wrg6wgw65r4g5w5";
 const app = express();
 
 app.use(cors());
@@ -32,11 +35,17 @@ app.listen(port, () => {
 })
 
 
-// ====================================================================
+// ==================================================================================
 
 
 require('./model/item_model');
 const Items = mongoose.model('items');
+
+require('./model/user_login_model');
+const Users = mongoose.model('users');
+
+
+// ==================================================================================
 
 
 app.use(function(req, res, next) {
@@ -61,17 +70,17 @@ app.get('/allItems', async(req,res) => {
     catch(err) {
         console.log(err);
     }
-})
+});
 
 app.get('/mobiles', async(req,res) => {
     try {
-        const mobile_item = await Items.find({'category': 'Mobile'});
+        const mobile_item = await Items.find({'category': 'Mobiles'});
         res.send({ status: "ok", data: mobile_item });
     }
     catch(err) {
         console.log(err);
     }
-})
+});
 
 app.get('/electronics', async(req,res) => {
     try {
@@ -81,7 +90,47 @@ app.get('/electronics', async(req,res) => {
     catch(err) {
         console.log(err);
     }
-})
+});
+
+app.post('/userlogin', async(req, res) => {
+    const { email_id, password } = req.body;
+    const user = await Users.findOne({ email_id });
+    
+    if(!user) {
+        return res.json({ error:'User not found' });
+    }
+
+    if(password === user.password) {
+        const token = await jwt.sign({ email_id: user.email_id }, JWT_SECRET);
+        console.log(token);
+
+        if(res.status(201)) {
+            return res.json({ status: "ok", data: token });
+        }
+        else {
+            return res.json({ error: "error" });
+        }
+    }
+
+    return res.json({ status: "error", error: "Invalid password!" });
+});
+
+app.post('/userData', async(req, res) => {
+    const { token } = req.body;
+
+    try {
+        const user = await jwt.verify(token, JWT_SECRET);    
+        const user_email = user.email_id;
+        Users.findOne({ email_id: user_email })
+        .then((data) => {
+            res.send({ status: "ok", data: data });
+        });
+    } 
+    catch (error) {
+        res.send({ status:"error", data: "error" });
+    }
+});
+
 
 // ==================================================================================
 // routers

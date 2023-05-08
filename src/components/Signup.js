@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDBCol, MDBRow, MDBCard, MDBCardBody} from 'mdb-react-ui-kit';
-import {useState} from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -29,6 +29,7 @@ function Signup() {
     const [users, setUsers] = useState({
         f_name: "",
         l_name: "",
+        email_id:"",
         mobile_no: "",
         password: "",
         re_password: ""
@@ -52,14 +53,14 @@ function Signup() {
 
     return (
     <>
-        <div className='px-5 pt-3'>
+        <div className='px-5 pt-3' style={{ 'backgroundImage': 'linear-gradient(to left bottom, #d6a933, #deb93b, #e5c945, #ebda4f, #f0eb5b)' }}>
             <MDBRow>
                 <MDBCol md='7' className='text-center text-md-start d-flex flex-column justify-content-center'>
-                    <h1 className="my-5 display-3 fw-bold ls-tight px-3">
+                    <h1 className="mt-1 mb-5 display-3 fw-bold ls-tight px-3">
                         The best offers just <br />
-                        <span className="text-primary">for you !!</span>
+                        <span className="text-danger">for you !!</span>
                     </h1>
-                    <p className='px-3' style={{color: 'hsl(217, 10%, 50.8%)'}}>
+                    <p className='px-3' style={{color: 'white', 'fontSize': '20px' }}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Eveniet, itaque accusantium odio, soluta, corrupti aliquam
                         quibusdam tempora at cupiditate quis eum maiores libero
@@ -96,7 +97,6 @@ function Signup() {
                             <TextField id="outlined-required" 
                                 label="Email address"
                                 name="email_id"
-                                type="email"
                                 value={users.email_id}
                                 onChange={(e) => handleChange(e) }
                                 style={{ 'width': '100%' }}
@@ -107,15 +107,13 @@ function Signup() {
                             <TextField id="outlined-required" 
                                 label="Mobile no."
                                 name="mobile_no"
-                                type="text"
                                 value={users.mobile_no}
                                 onChange={(e) => handleChange(e) }
                                 style={{ 'width': '100%' }}
-                                inputProps={{
-                                    maxLength: 10,
-                                    inputMode: 'text',
-                                    pattern: '[0-9]*',
-                                }}
+                                // inputProps={{
+                                //     maxLength: 10,
+                                //     pattern: '[0-9]*',
+                                // }}
                                 required />
                         </div>  
 
@@ -160,10 +158,18 @@ function Signup() {
 
                         <div className="text-center">
                             <h6 className='py-2'>or Sign up with:</h6>
-                            <GoogleIcon size="large" className='mx-4' style={{ 'color': 'red', 'fontSize': '30px' }} />
-                            <TwitterIcon size="large" className='mx-4' style={{ 'color': '#03c2fc', 'fontSize': '30px' }} />
-                            <GitHubIcon size="large" className='mx-4' style={{ 'color': 'black', 'fontSize': '30px' }} />
-                            <FacebookIcon size="large" className='mx-4' style={{ 'color': 'blue', 'fontSize': '34px' }} />
+                            <IconButton>    
+                                <GoogleIcon size="large" className='mx-4' style={{ 'color': 'red', 'fontSize': '30px' }} />
+                            </IconButton>
+                            <IconButton>
+                                <TwitterIcon size="large" className='mx-4' style={{ 'color': '#03c2fc', 'fontSize': '30px' }} />
+                            </IconButton>
+                            <IconButton>
+                                <GitHubIcon size="large" className='mx-4' style={{ 'color': 'black', 'fontSize': '30px' }} />
+                            </IconButton>
+                            <IconButton>
+                                <FacebookIcon size="large" className='mx-4' style={{ 'color': 'blue', 'fontSize': '34px' }} />
+                            </IconButton>
                         </div>
 
 
