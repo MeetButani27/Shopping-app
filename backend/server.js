@@ -92,6 +92,17 @@ app.get('/electronics', async(req,res) => {
     }
 });
 
+app.get('/fashion', async(req,res) => {
+    try {
+        const fashion_item = await Items.find({'category': 'Fashion'});
+        res.send({ status: "ok", data: fashion_item });
+    }
+    catch(err) {
+        console.log(err);
+    }
+});
+
+
 app.post('/userlogin', async(req, res) => {
     const { email_id, password } = req.body;
     const user = await Users.findOne({ email_id });
