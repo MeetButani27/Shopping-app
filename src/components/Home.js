@@ -9,7 +9,9 @@ import axios from 'axios';
 
 function Home() {
   const item_url = "http://localhost:9000/allItems";
-  const user_url = "http://localhost:9000/userlogin";
+  const user_url = "http://localhost:9000/userData";
+
+  const [userData, setUserData] = useState({});
   const [items, setItems] = useState([]);
   
   const fetchItemData = () => {
@@ -23,15 +25,12 @@ function Home() {
   };
 
   const fetchUserData = () => {
-    return axios.post(user_url, window.localStorage.getItem("token"))
-      .then((data) => {
-        console.log(data);
-    
-        if(data.status == "ok") {
-          alert("Login successfull !!");
-          window.localStorage.setItem("token", data.data);
-          window.location.href = "./mobiles";
-        }
+    const accessToken = window.localStorage.getItem("accessToken");
+
+    return axios.post(user_url, { token: accessToken})
+      .then((res) => {
+        // console.log(res.data.userData);
+        setUserData(res.data.userData);
       })
       .catch((err) => {
         console.log(err);
@@ -50,6 +49,7 @@ function Home() {
 
       <div style={{ 'backgroundColor': '#e9ebf0' , 'margin': '0px' }} className="mb-4">
         <div className="container-fluid px-4 pt-3 pb-4">
+          <h2>Hello, { userData.f_name + " " + userData.l_name }</h2>
           <h5 className="pb-4">Choose from a wide range of categories:</h5>
             <div style={{ 'display':'flex' , 'justifyContent': 'space-evenly'}}>
               <Button variant="outlined" size="medium" color="success">All categories</Button>

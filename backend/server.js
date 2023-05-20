@@ -113,18 +113,19 @@ app.post('/userlogin', async(req, res) => {
 
     if(password === user.password) {
         const token = await jwt.sign({ email_id: user.email_id }, JWT_SECRET);
-        console.log(token);
 
         if(res.status(201)) {
-            return res.json({ status: "ok", data: token });
+            return res.json({ token: token });
+            na
         }
         else {
             return res.json({ error: "error" });
         }
     }
 
-    return res.json({ status: "error", error: "Invalid password!" });
+    return res.json({ error: "Invalid Password!" });
 });
+
 
 app.post('/userData', async(req, res) => {
     const { token } = req.body;
@@ -134,11 +135,11 @@ app.post('/userData', async(req, res) => {
         const user_email = user.email_id;
         Users.findOne({ email_id: user_email })
         .then((data) => {
-            res.send({ status: "ok", data: data });
+            res.send({ userData: data });
         });
     } 
     catch (error) {
-        res.send({ status:"error", data: "error" });
+        res.send({ message: "error" });
     }
 });
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { MDBCol, MDBRow, MDBCard, MDBCardBody} from 'mdb-react-ui-kit';
 import { useState } from 'react';
-import { Link, json } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -11,7 +11,7 @@ import { IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
 
 function Login() {
-
+    
     const [eye, setEye1] = useState(false);
     const handleEye = () => {
         setEye1(!eye);
@@ -22,6 +22,10 @@ function Login() {
         password: ""
       });
 
+
+    const navigate = useNavigate ();
+    
+
     const handleChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
@@ -31,18 +35,23 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(user);
-    
-        axios.post('http://localhost:9000/userlogin', user)
-        .then((res) => {
-            if(res.data.token){
-                localStorage.setItem("user", JSON.stringify(res.data));
-            }
-            alert('Login successfully !!');
-        })
-        .then((data) => {
-            console.log(data, "userRegister");
-        })
-        .catch((err) => console.log(err))
+        
+        if(user.email_id && user.password) {
+            axios.post('http://localhost:9000/userlogin', user)
+            .then((res) => {
+                console.log(res.data);
+                if(res.data.token){
+                    localStorage.setItem("accessToken", res.data.token);
+                    navigate('/home');
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+        else {
+            alert('All the fields are mandatory to be filled!');
+        }
     };
 
 
@@ -72,7 +81,7 @@ function Login() {
                         <h3 className='pb-4'>Log In to continue</h3>
 
                         <div className='py-3' style={{ 'display': 'flex', 'justifyContent': 'space-between'}}>
-                            <TextField id="outlined-required" 
+                            <TextField
                                 label="Email address"
                                 name="email_id"
                                 type="email"
@@ -83,7 +92,7 @@ function Login() {
                         </div>
 
                         <div className='pt-1 pb-4' style={{ 'display': 'flex', 'justifyContent': 'space-between'}}>
-                            <TextField id="outlined-required" 
+                            <TextField
                                 label="Password"
                                 name="password"
                                 type= { eye ?  "text":"password"}
