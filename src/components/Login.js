@@ -10,7 +10,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
 
-function Login() {
+function Login(props) {
     
     const [eye, setEye1] = useState(false);
     const handleEye = () => {
@@ -20,11 +20,9 @@ function Login() {
     const [user, setUser] = useState({
         email_id: "",
         password: ""
-      });
-
+    });
 
     const navigate = useNavigate ();
-    
 
     const handleChange = (e) => {
         let name = e.target.name;
@@ -43,6 +41,7 @@ function Login() {
                 if(res.data.token){
                     localStorage.setItem("accessToken", res.data.token);
                     navigate('/home');
+                    props.setUserLoggedIn(true);
                 }
             })
             .catch((err) => {

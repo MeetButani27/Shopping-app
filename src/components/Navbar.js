@@ -3,8 +3,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Navbar() {
-
+function Navbar(props) {
+  
   const navigate = useNavigate();
 
   const navigateToLogin = () => {
@@ -14,6 +14,10 @@ function Navbar() {
   const navigateToSignup = () => {
     navigate('/signup');
   };
+
+  const logout = () => {
+    window.localStorage.removeItem("accessToken");
+  }
 
   return (
     <>
@@ -41,12 +45,27 @@ function Navbar() {
                         <Link className="nav-link" to="/additem">Add item</Link>
                       </li>
                   </ul>
+
                   <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    {/* <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> */}
                     <FavoriteBorderIcon className="mx-2" style={{color: 'silver', margin: 'auto'}}/>
                     <ShoppingCartIcon className="mx-2 me-3" style={{color: 'silver', margin: 'auto'}}/>
-                    <button className="btn btn-success mx-2" type="submit" onClick={ navigateToLogin }>Login</button>
-                    <button className="btn btn-primary mx-2" type="submit" onClick={ navigateToSignup }>SignUp</button>
+                    {
+                      !props.userLoggedIn ?
+                      <>
+                        <button className="btn btn-success mx-2" type="submit" onClick={ navigateToLogin }>Login</button>
+                        <button className="btn btn-primary mx-2" type="submit" onClick={ navigateToSignup }>SignUp</button>
+                      </>
+                      :
+                      <>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li className="nav-item">
+                            <span className="nav-link">Welcome, {props.userData.f_name}</span>
+                          </li>
+                        </ul>
+                        <button className="btn btn-primary mx-2" type="submit" onClick={ logout }>Logout</button>
+                      </>
+                    }
                   </form>
                 </div>
             </div>

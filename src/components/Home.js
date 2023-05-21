@@ -2,16 +2,15 @@ import React from "react";
 import Carousel from "./Carousel";
 import Item from "./Item";
 import Button from '@mui/material/Button';
-// import Router from "../images/router.webp";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-function Home() {
+function Home(props) {
   const item_url = "http://localhost:9000/allItems";
   const user_url = "http://localhost:9000/userData";
 
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
   const [items, setItems] = useState([]);
   
   const fetchItemData = () => {
@@ -30,7 +29,7 @@ function Home() {
     return axios.post(user_url, { token: accessToken})
       .then((res) => {
         // console.log(res.data.userData);
-        setUserData(res.data.userData);
+        props.setUserData(res.data.userData);
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +48,7 @@ function Home() {
 
       <div style={{ 'backgroundColor': '#e9ebf0' , 'margin': '0px' }} className="mb-4">
         <div className="container-fluid px-4 pt-3 pb-4">
-          <h2>Hello, { userData.f_name + " " + userData.l_name }</h2>
+          <h2>Hello, { props.userData ? (props.userData.f_name + " " + props.userData.l_name) : "user" }</h2>
           <h5 className="pb-4">Choose from a wide range of categories:</h5>
             <div style={{ 'display':'flex' , 'justifyContent': 'space-evenly'}}>
               <Button variant="outlined" size="medium" color="success">All categories</Button>

@@ -4,7 +4,6 @@ const morgan = require('morgan');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "pm15aafre87231ftgedsf2a1d1fr21tg1r2gh1e2sa13qf57u57821g2e1g32t58rf9wrg6wgw65r4g5w5";
 const app = express();
 
 app.use(cors());
@@ -18,6 +17,7 @@ app.use(bodyParser.json());
 
 const port = 9000;
 const mongoUrl = process.env.MONGO_DB_URL;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 mongoose.connect(mongoUrl,{
     useNewUrlParser: true,
