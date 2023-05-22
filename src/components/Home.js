@@ -21,12 +21,17 @@ function Home(props) {
       .catch((err) => {
         console.log(err);
       });
+  };  
+
+  const headers = {
+    'Access-Control-Allow-Origin' : '*',
+    'Content-Type': 'application/json',
+    'authorization': `Bearer ${window.localStorage.getItem("accessToken")}`
   };
-
+  
   const fetchUserData = () => {
-    const accessToken = window.localStorage.getItem("accessToken");
 
-    return axios.post(user_url, { token: accessToken})
+    return axios.post(user_url, {}, { headers: headers})
       .then((res) => {
         // console.log(res.data.userData);
         props.setUserData(res.data.userData);
